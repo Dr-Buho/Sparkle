@@ -728,6 +728,8 @@
     }
     
     [alert setIcon:[SUApplicationInfo bestIconForHost:_host]];
+    alert.window.level = NSStatusWindowLevel;
+    alert.window.collectionBehavior |= (NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorFullScreenAuxiliary);
     
     NSModalResponse response = [alert runModal];
     if (response == NSAlertSecondButtonReturn && secondaryAction != nil) {

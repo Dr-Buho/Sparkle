@@ -88,6 +88,9 @@ static NSString *const SUUpdatePermissionPromptTouchBarIdentifier = @"" SPARKLE_
 
 - (void)windowDidLoad
 {
+    self.window.level = NSStatusWindowLevel;
+    self.window.collectionBehavior |= (NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorFullScreenAuxiliary);
+    
     [self.window center];
     
     _infoChoiceView.hidden = ![self shouldAskAboutProfile];

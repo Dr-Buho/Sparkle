@@ -347,6 +347,9 @@ static const CGFloat SUUpdateAlertGroupElementSpacing = 12.0;
 {
     NSWindow *window = self.window;
     
+    window.level = NSStatusWindowLevel;
+    window.collectionBehavior |= (NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorFullScreenAuxiliary);
+    
     window.movableByWindowBackground = YES;
     
 #if SPARKLE_COPY_LOCALIZATIONS

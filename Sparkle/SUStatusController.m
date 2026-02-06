@@ -72,6 +72,9 @@ static NSString *const SUStatusControllerTouchBarIdentifier = @"" SPARKLE_BUNDLE
     NSWindow *window = self.window;
     NSRect windowFrame = window.frame;
     
+    window.level = NSStatusWindowLevel;
+    window.collectionBehavior |= (NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorFullScreenAuxiliary);
+    
     if (_centerPointValue != nil) {
         NSPoint centerPoint = _centerPointValue.pointValue;
         [window setFrameOrigin:NSMakePoint(centerPoint.x - windowFrame.size.width / 2.0, centerPoint.y - windowFrame.size.height / 2.0)];
