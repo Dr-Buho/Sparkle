@@ -730,6 +730,9 @@
     [alert setIcon:[SUApplicationInfo bestIconForHost:_host]];
     alert.window.level = NSStatusWindowLevel;
     alert.window.collectionBehavior |= (NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorFullScreenAuxiliary);
+    [NSApp activateIgnoringOtherApps:YES];
+    [alert.window makeKeyAndOrderFront:nil];
+    [alert.window orderFrontRegardless];
     
     NSModalResponse response = [alert runModal];
     if (response == NSAlertSecondButtonReturn && secondaryAction != nil) {
@@ -769,12 +772,16 @@
         }
         
         _statusController = [[SUStatusController alloc] initWithHost:_host windowTitle:[NSString stringWithFormat:SULocalizedStringFromTableInBundle(@"Updating %@", SPARKLE_TABLE, SUSparkleBundle(), nil), _host.name] centerPointValue:centerPointValue minimizable:minimizable closable:closable];
-        
+
         if (_updateAlertWindowWasInactive) {
             [_statusController.window orderFront:nil];
         } else {
             [_statusController showWindow:self];
         }
+        
+        [NSApp activateIgnoringOtherApps:YES];
+        [_statusController.window makeKeyAndOrderFront:nil];
+        [_statusController.window orderFrontRegardless];
     }
 }
 

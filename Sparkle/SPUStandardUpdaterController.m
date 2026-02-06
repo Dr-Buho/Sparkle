@@ -96,6 +96,11 @@
             NSAlert *alert = [[NSAlert alloc] init];
             alert.messageText = SULocalizedStringFromTableInBundle(@"Unable to Check For Updates", SPARKLE_TABLE, sparkleBundle, nil);
             alert.informativeText = [NSString stringWithFormat:SULocalizedStringFromTableInBundle(@"The updater failed to start. Please verify you have the latest version of %@ and contact the app developer if the issue still persists. Check the Console logs for more information.", SPARKLE_TABLE, sparkleBundle, nil), host.name];
+            alert.window.level = NSStatusWindowLevel;
+            alert.window.collectionBehavior |= (NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorFullScreenAuxiliary);
+            [NSApp activateIgnoringOtherApps:YES];
+            [alert.window makeKeyAndOrderFront:nil];
+            [alert.window orderFrontRegardless];
             [alert runModal];
         });
     }
